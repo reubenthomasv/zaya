@@ -1,0 +1,93 @@
+<!Doctype html>
+<html>
+	<head>
+		<title>Multiple Image Slider</title>
+		<!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/material.min.css">
+    <script src="js/material.min.js"></script>
+    <link rel="stylesheet" href="css/material-icons.css">
+     <link rel="stylesheet" href="css/material.deep_orange-indigo.min.css" /> 
+		<link rel="stylesheet" href="css/multiImageStyle.css">		
+	</head>
+	<body>
+		<!-- Container for Slider and Navigation Controls -->
+		<DIV class="container">
+		<div class="gallery">
+			<!-- The actual moving Slider with Slides and Dividers-->
+			<div class="slider">
+				<ul>
+					<li><img src="img/smallimg1.png" class="slides" alt="Image1" style="margin-right:10px;"></li>
+					<li><img src="img/smallimg2.png" class="slides" alt="Image2" style="margin-right:10px;"></li>
+					<li><img src="img/smallimg3.png" class="slides" alt="Image3" style="margin-right:10px;"></li>
+					<li><img src="img/smallimg4.png" class="slides" alt="Image4"></li>
+				</ul>
+			</div>
+			<!-- Navigation Button Controls -->
+			<div id="slider-nav">
+				<button data-dir="prev">Previous</button>
+				<button data-dir="next" style="float:right;">Next</button>
+			</div>
+		</div>
+		</DIV>
+		<!-- Loading JavaScript Codes. -->
+		<script src="js/jquery.min.js"></script>
+		<script src="js/multiImageSliderScript.js"></script>
+		<script>
+			// 
+			jQuery(document).ready(function ($) {
+				// creating a container variable to hold the 'UL' elements. It uses method chaining.
+				var container=$('div.slider')
+											.css('overflow','hidden')
+											.children('ul');
+				
+				/* 
+				On the event of mouse-hover, 
+					i) Change the visibility of Button Controls.
+					ii) SET/RESET the "intv" variable to switch between AutoSlider and Stop mode.
+				*/
+				$('.gallery'){
+					$('#slider-nav').toggle();
+					return e.type=='mouseenter'?clearInterval(intv):autoSlider();
+				});
+				
+				// Creating the 'slider' instance which will set initial parameters for the Slider.
+				var sliderobj= new slider(container,$('#slider-nav'));
+				/*
+				This will trigger the 'setCurrentPos' and 'transition' methods on click of any button
+				 "data-dir" attribute associated with the button will determine the direction of sliding.
+				*/
+				sliderobj.nav.find('button').on('click', function(){
+					sliderobj.setCurrentPos($(this).data('dir'));
+					sliderobj.transition();
+				});
+				
+				/*autoSlider(); // Calling autoSlider() method on Page Load.*/
+				
+				/* 
+				This function will initialize the interval variable which will cause execution of the inner function after every 2 seconds automatically.
+				*
+				function autoSlider()
+				{
+					return intv = setInterval(function(){
+						sliderobj.setCurrentPos('next');
+						sliderobj.transition();
+					}, 2000);
+				}*/
+				
+			});
+		</script>
+	</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

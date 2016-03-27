@@ -1,0 +1,41 @@
+*
+{
+	margin:0;
+	padding:0;
+}
+
+.gallery
+{
+	width:100%;
+	height:auto;
+	margin:10px auto;
+	border:1px solid orange;
+}
+
+.slider
+{
+	width:inherit;
+	height:auto;
+	overflow:scroll;
+}
+.slider ul
+{
+	width:auto;
+	list-style:none;
+	margin-left:0px;
+}
+.slider li
+{
+	float:left;
+}
+
+.dividers
+{
+	margin:0 15px 0 15px; /* This is Important and margin must be same on both sides */
+}
+
+#slider-nav
+{
+	display:none; /* This is important to hide the buttons if jQuery is Not supported. */
+	margin-top: -4em;
+}
